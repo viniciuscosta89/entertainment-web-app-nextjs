@@ -37,7 +37,6 @@
     "@swc/plugin-styled-components": "^1.5.97",
     "@types/lodash.debounce": "^4.0.9",
     "@types/nodemailer": "^6.4.14",
-    "prettier": "^3.1.0",
     "sass": "^1.69.5"
   }
 }

@@ -50,7 +50,7 @@ export default function Bookmarks({ userId }: { userId: string }) {
             .map(item => (
               <Card.Root contentOver={false} key={item.id} variants={itemVariants}>
                 <Card.Picture>
-                  <Card.Image posterUrl={item.poster_path} posterAlt={item.title || item.name} />
+                  <Card.Image posterUrl={item.poster_path} posterAlt={item.title || item.name} posterSize="w500" />
                   <Card.Bookmark item={item} />
                   <Card.Hover />
                 </Card.Picture>

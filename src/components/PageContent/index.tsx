@@ -62,6 +62,7 @@ export default function PageContent({ mediaType, userId }: PageContentProps) {
                     <Card.Image
                       posterUrl={item.poster_path}
                       posterAlt={item.title || item.name}
+                      posterSize="w500"
                       aspectRatioMobile="auto"
                       aspectRatioDesktop="auto"
                     />

@@ -49,6 +49,11 @@ export default function Trending() {
                 padding: { left: '0rem', right: '17.5rem' },
                 perPage: 2,
               },
+              1600: {
+                gap: '2.5rem',
+                padding: { left: '0rem', right: '17.5rem' },
+                perPage: 3,
+              },
               1900: {
                 gap: '2.5rem',
                 padding: { left: '0rem', right: '20rem' },
@@ -69,6 +74,7 @@ export default function Trending() {
                         aspectRatioDesktop="470 / 230"
                         posterUrl={item.poster_path}
                         posterAlt={item.title || item.name}
+                        posterSize="w500"
                         isPriority
                         minHeight={{
                           mobile: 'auto',

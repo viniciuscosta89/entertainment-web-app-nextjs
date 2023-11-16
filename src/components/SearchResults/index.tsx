@@ -63,6 +63,7 @@ export default function SearchResults({ mediaType }: { mediaType?: MediaTextType
                             <Card.Image
                               posterUrl={item.poster_path}
                               posterAlt={item.title || item.name}
+                              posterSize="w500"
                               minHeight={{
                                 mobile: '14.625rem',
                                 tablet: '20.5rem',

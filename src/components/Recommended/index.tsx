@@ -30,7 +30,12 @@ export default function Recommended() {
             {data?.results.map(item => (
               <Card.Root contentOver={false} key={item.id} minHeight="28rem" variants={itemVariants}>
                 <Card.Picture>
-                  <Card.Image posterUrl={item.poster_path} posterAlt={item.title || item.name} isPriority />
+                  <Card.Image
+                    posterUrl={item.poster_path}
+                    posterAlt={item.title || item.name}
+                    posterSize="w500"
+                    isPriority
+                  />
                   <Card.Bookmark item={item} />
                   <Card.Hover />
                 </Card.Picture>
