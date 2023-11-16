@@ -3,51 +3,44 @@
 import { SectionTitle } from '@styles/SectionTitle';
 import { Container } from '@components/Container';
 import { Card } from '@components/Card';
-import { useBookmarkStore } from 'store/bookmark';
 import { PageContainer } from '@styles/PageContainer';
 import { MediaGrid } from '@styles/MediaGrid';
-import {
-  SearchbarInput,
-  SearchbarInputContainer,
-  SearchbarInputLine,
-  SearchbarStyle,
-} from '@components/Searchbar/Searchbar.styles';
-import Icons from '@components/icons';
-import { ChangeEvent, useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useBookmarkContext } from '@contexts/BookmarkContext';
+import { Searchbar } from '@components/Searchbar';
+import { itemVariants, listVariants } from '@styles/Motion';
 
-export default function Bookmarks() {
-  const { bookmarks, filteredBookmarks, filterBookmarks } = useBookmarkStore();
-
+export default function Bookmarks({ userId }: { userId: string }) {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   }, []);
 
-  console.log({ bookmarks });
+  const { bookmarks, getBookmarksFromDB } = useBookmarkContext();
+
+  useEffect(() => {
+    getBookmarksFromDB(userId);
+  }, []);
 
   return (
     <>
-      <Container $paddingInline="1rem" $desktopPaddingInline="0">
-        <SearchbarStyle>
-          <Icons.Magnify width="1.5rem" desktopWidth="2rem" tabletWidth="2rem" />
-          <SearchbarInputContainer>
-            <SearchbarInput
-              placeholder="Search for bookmarked shows"
-              onChange={e => handleChange(e)}
-              value={inputValue}
-            />
-            <SearchbarInputLine />
-          </SearchbarInputContainer>
-        </SearchbarStyle>
-      </Container>
+      <Searchbar.Root>
+        <Searchbar.Input placeholder="Search for bookmarked shows" value={inputValue} handleChange={handleChange} />
+      </Searchbar.Root>
 
       <PageContainer>
         <Container $paddingInline="1rem" $desktopPaddingInline="0">
-          <SectionTitle>Bookmarked Shows</SectionTitle>
+          <SectionTitle
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.25, type: 'spring', stiffness: 100 }}
+          >
+            Bookmarked Shows
+          </SectionTitle>
         </Container>
 
-        <MediaGrid>
+        <MediaGrid variants={listVariants} initial="hidden" animate="show">
           {bookmarks
             .filter(bookmark =>
               bookmark.title
@@ -55,14 +48,9 @@ export default function Bookmarks() {
                 : bookmark.name.toLowerCase().includes(inputValue),
             )
             .map(item => (
-              <Card.Root contentOver={false} key={item.id}>
+              <Card.Root contentOver={false} key={item.id} variants={itemVariants}>
                 <Card.Picture>
-                  <Card.Image
-                    posterUrl={item.poster_path}
-                    posterAlt={item.title || item.name}
-                    aspectRatioMobile="auto"
-                    aspectRatioDesktop="auto"
-                  />
+                  <Card.Image posterUrl={item.poster_path} posterAlt={item.title || item.name} />
                   <Card.Bookmark item={item} />
                   <Card.Hover />
                 </Card.Picture>

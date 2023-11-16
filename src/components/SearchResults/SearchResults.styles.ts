@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const SearchResultsContainer = styled.section`
@@ -16,7 +17,7 @@ export const SearchResultsContainer = styled.section`
   }
 `;
 
-export const SearchResultsGrid = styled.div`
+export const SearchResultsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;

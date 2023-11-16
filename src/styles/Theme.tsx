@@ -13,6 +13,7 @@ export const theme = {
   },
   colors: {
     red: {
+      350: 'hsla(0, 97%, 63%, 0.35)',
       400: 'hsl(0, 97%, 63%)',
     },
     darkBlue: {

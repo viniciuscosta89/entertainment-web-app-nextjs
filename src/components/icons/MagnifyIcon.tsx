@@ -9,6 +9,10 @@ export default function MagnifyIcon({
   tabletWidth,
   desktopHeight,
   desktopWidth,
+  animate,
+  initial,
+  variants,
+  transition,
 }: IconProps) {
   return (
     <IconStyle
@@ -22,6 +26,10 @@ export default function MagnifyIcon({
       $desktopWidth={desktopWidth}
       $desktopHeight={desktopHeight}
       $color={color}
+      animate={animate}
+      initial={initial}
+      variants={variants}
+      transition={transition}
     >
       <path fill="#000" d="M0 0h32v32H0z" opacity=".01" />
       <path

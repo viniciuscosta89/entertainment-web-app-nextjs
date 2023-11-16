@@ -11,7 +11,7 @@ const fetchTVSeries = async (): Promise<Data> => {
 };
 
 export const useTVSeries = () => {
-  const { data, isLoading } = useQuery(['tv series'], () => fetchTVSeries());
+  const { data, isLoading } = useQuery({ queryKey: ['tv series'], queryFn: () => fetchTVSeries() });
 
   return { data, isLoading };
 };

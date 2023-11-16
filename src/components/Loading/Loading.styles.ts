@@ -1,81 +1,39 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const Loading = styled.div`
-  transform: rotateZ(45deg);
-  perspective: 1000px;
+export const LoadingIcon = styled(motion.div)`
+  animation: rotation 1s linear infinite;
+  background: linear-gradient(0deg, transparent 33%, ${({ theme }) => theme.colors.red[400]} 100%);
   border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
-  color: ${({ theme }) => theme.colors.white};
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  position: relative;
 
-  &::before,
   &::after {
     content: '';
-    display: block;
+    box-sizing: border-box;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: inherit;
-    height: inherit;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    transform: rotateX(70deg);
-    animation: 1s spin linear infinite;
+    background: ${({ theme }) => theme.colors.darkBlue[900]};
   }
 
-  &::after {
-    color: ${({ theme }) => theme.colors.red[400]};
-    transform: rotateY(70deg);
-    animation-delay: 0.4s;
-  }
-
-  @keyframes rotate {
+  @keyframes rotation {
     0% {
-      transform: translate(-50%, -50%) rotateZ(0deg);
+      transform: rotate(0deg);
     }
     100% {
-      transform: translate(-50%, -50%) rotateZ(360deg);
-    }
-  }
-
-  @keyframes rotateccw {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-      transform: translate(-50%, -50%) rotate(-360deg);
-    }
-  }
-
-  @keyframes spin {
-    0%,
-    100% {
-      box-shadow: 0.2em 0px 0 0px currentcolor;
-    }
-    12% {
-      box-shadow: 0.2em 0.2em 0 0 currentcolor;
-    }
-    25% {
-      box-shadow: 0 0.2em 0 0px currentcolor;
-    }
-    37% {
-      box-shadow: -0.2em 0.2em 0 0 currentcolor;
-    }
-    50% {
-      box-shadow: -0.2em 0 0 0 currentcolor;
-    }
-    62% {
-      box-shadow: -0.2em -0.2em 0 0 currentcolor;
-    }
-    75% {
-      box-shadow: 0px -0.2em 0 0 currentcolor;
-    }
-    87% {
-      box-shadow: 0.2em -0.2em 0 0 currentcolor;
+      transform: rotate(360deg);
     }
   }
 `;
 
-export const LoadButton = styled.button`
+export const LoadButton = styled(motion.button)`
   background: none;
   border: none;
   padding: 0;

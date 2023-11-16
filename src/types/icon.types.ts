@@ -1,3 +1,5 @@
+import { Variants } from 'framer-motion';
+
 export interface IconProps {
   color?: string;
   hasFill?: boolean;
@@ -10,6 +12,15 @@ export interface IconProps {
 
   desktopHeight?: string;
   desktopWidth?: string;
+
+  animate?: string;
+  initial?: string;
+  variants?: Variants;
+  transition?: {
+    delay?: number;
+    type?: string;
+    stiffness?: number;
+  };
 }
 
 export interface IconStyleProps {

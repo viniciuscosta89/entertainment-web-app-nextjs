@@ -43,7 +43,6 @@ const GlobalStyles = createGlobalStyle`
 	html {
 		box-sizing: border-box;
 		scroll-behavior: smooth;
-		height: 100%;
 
 		@media (prefers-reduced-motion: reduce) {
 			scroll-behavior: auto;
@@ -160,6 +159,14 @@ const GlobalStyles = createGlobalStyle`
 	[tabindex="-1"] {
 		outline: none !important;
 		box-shadow: none !important;
+	}
+
+	.material-symbols-outlined {
+		font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24
 	}
 `;
 

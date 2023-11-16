@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import type { IconStyleProps } from '@type/icon.types';
+import { motion } from 'framer-motion';
 
-export const IconStyle = styled.svg<IconStyleProps>`
+export const IconStyle = styled(motion.svg)<IconStyleProps>`
   color: ${props => props.$color};
   line-height: 1;
   width: ${props => props.$width};

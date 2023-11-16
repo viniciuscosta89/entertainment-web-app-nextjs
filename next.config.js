@@ -1,25 +1,26 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
 	compiler: {
-		styledComponents: true
+		styledComponents: true,
 	},
 	images: {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'i.pravatar.cc',
+				hostname: 'avatars.githubusercontent.com',
 			},
 			{
 				protocol: 'https',
 				hostname: 'image.tmdb.org',
 			},
 			{
-				protocol: 'https',
-				hostname: 'placehold.co',
-			},
-			{
 				protocol: 'http',
 				hostname: 'placekitten.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'lh3.googleusercontent.com',
 			},
 		],
 	},

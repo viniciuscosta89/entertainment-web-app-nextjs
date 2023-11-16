@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const SearchbarStyle = styled.div`
@@ -17,7 +18,7 @@ export const SearchbarStyle = styled.div`
   }
 `;
 
-export const SearchbarInputContainer = styled.div`
+export const SearchbarInputContainer = styled(motion.div)`
   position: relative;
   width: 100%;
 `;

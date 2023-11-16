@@ -11,7 +11,7 @@ const fetchMovies = async (): Promise<Data> => {
 };
 
 export const useMovies = () => {
-  const { data, isLoading } = useQuery(['movies'], () => fetchMovies());
+  const { data, isLoading } = useQuery({ queryKey: ['movies'], queryFn: () => fetchMovies() });
 
   return { data, isLoading };
 };

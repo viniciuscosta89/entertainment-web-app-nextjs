@@ -1,5 +1,5 @@
 import 'styled-components';
-import { theme } from '@styles/theme';
+import { theme } from '@styles/Theme';
 
 type Theme = typeof theme;
 
@@ -12,6 +12,7 @@ declare module 'styled-components' {
     };
     colors: {
       red: {
+        350: string;
         400: string;
       };
       darkBlue: {

@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, keepPreviousData } from '@tanstack/react-query';
 import { Data } from '@type/data.types';
 import type { MediaSearchType } from '@type/media.types';
 import axios from 'axios';
@@ -31,7 +31,7 @@ const fetchSearch = async ({
     {
       params: {
         query: searchParam,
-        include_adult: false,
+        include_adult: true,
         language: 'en-US',
         page: pageParam,
       },
@@ -42,18 +42,15 @@ const fetchSearch = async ({
 };
 
 export const useSearch = (pageParam?: number, searchParam?: string, mediaType?: MediaSearchType) => {
-  const { data, isLoading, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery(
-    ['search', searchParam, pageParam, mediaType],
-    ({ pageParam = 1 }) => fetchSearch({ pageParam, searchParam, mediaType }),
-    {
-      keepPreviousData: true,
-      getNextPageParam: lastPage => {
-        return lastPage.page < lastPage.total_pages // Here I'm assuming you have access to the total number of pages
-          ? lastPage.page + 1
-          : undefined; // If there is not a next page, getNextPageParam will return undefined and the hasNextPage boolean will be set to 'false'
-      },
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status } = useInfiniteQuery({
+    queryKey: ['search', searchParam, pageParam, mediaType],
+    queryFn: () => fetchSearch({ searchParam, pageParam, mediaType }),
+    placeholderData: keepPreviousData,
+    initialPageParam: pageParam,
+    getNextPageParam: lastPage => {
+      return lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined;
     },
-  );
+  });
 
   const router = useRouter();
   const pathname = usePathname();

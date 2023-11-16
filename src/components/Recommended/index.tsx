@@ -6,6 +6,7 @@ import { Container } from '@components/Container';
 import { useTrending } from 'hooks/useTrending';
 import { Card } from '@components/Card';
 import Loading from '@components/Loading';
+import { itemVariants, listVariants } from '@styles/Motion';
 
 export default function Recommended() {
   const { data, isLoading } = useTrending('week');
@@ -13,21 +14,23 @@ export default function Recommended() {
   return (
     <RecommendedContainer>
       <Container $paddingInline="1rem" $desktopPaddingInline="0">
-        <SectionTitle $marginBottom>Recommended for you</SectionTitle>
+        <SectionTitle
+          $marginBottom
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.75, type: 'spring', stiffness: 100 }}
+        >
+          Recommended for you
+        </SectionTitle>
 
         {isLoading ? (
           <Loading />
         ) : (
-          <RecommendedGrid>
+          <RecommendedGrid variants={listVariants} initial="hidden" animate="show">
             {data?.results.map(item => (
-              <Card.Root contentOver={false} key={item.id} minHeight="28rem">
+              <Card.Root contentOver={false} key={item.id} minHeight="28rem" variants={itemVariants}>
                 <Card.Picture>
-                  <Card.Image
-                    posterUrl={item.poster_path}
-                    posterAlt={item.title || item.name}
-                    aspectRatioMobile="auto"
-                    aspectRatioDesktop="auto"
-                  />
+                  <Card.Image posterUrl={item.poster_path} posterAlt={item.title || item.name} isPriority />
                   <Card.Bookmark item={item} />
                   <Card.Hover />
                 </Card.Picture>

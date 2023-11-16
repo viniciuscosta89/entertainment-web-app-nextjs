@@ -1,8 +1,9 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const SectionTitle = styled.h2<{ $marginBottom?: boolean }>`
+export const SectionTitle = styled(motion.h2)<{ $marginBottom?: boolean }>`
   color: ${({ theme }) => theme.colors.white};
   font-size: var(--fs-500);
   font-weight: var(--fw-light);

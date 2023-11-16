@@ -28,4 +28,5 @@ export const AvatarImage = styled(Image)`
   object-fit: cover;
   object-position: center;
   max-width: 100%;
+  height: 100%;
 `;

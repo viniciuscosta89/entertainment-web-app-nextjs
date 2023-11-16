@@ -13,7 +13,9 @@ const fetchTrending = async (timeWindow: string): Promise<Data> => {
 };
 
 export const useTrending = (timeWindow: string) => {
-  const { data, isLoading } = useQuery(['trending', timeWindow], () => fetchTrending(timeWindow), {
+  const { data, isLoading } = useQuery({
+    queryKey: ['trending', timeWindow],
+    queryFn: () => fetchTrending(timeWindow),
     enabled: !!timeWindow,
   });
 

@@ -1,9 +1,10 @@
 import { RoundedStar } from '@smastrom/react-rating';
 import styled, { DefaultTheme } from 'styled-components';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { CardStyleProps } from './Card.types';
 
-export const Card = styled.article<{ $contentOver: boolean; $minHeight?: string }>`
+export const Card = styled(motion.article)<{ $contentOver: boolean; $minHeight?: string }>`
   border-radius: ${props => (props.$contentOver ? '0.5rem' : '0.5rem 0.5rem 0 0')};
   position: relative;
   overflow: hidden;
@@ -35,27 +36,28 @@ export const CardContent = styled.div<{ $contentOver: boolean }>`
   z-index: 5;
 `;
 
-export const CardPicture = styled.picture`
+export const CardPicture = styled(motion.picture)`
   overflow: hidden;
   position: relative;
 `;
 
-export const CardImg = styled(Image)<{
+export const CardImg = styled(Image || motion.img)<{
   $aspectRatioMobile?: string;
   $aspectRatioDesktop?: string;
   $minHeight?: string;
   $minHeightTablet?: string;
   $minHeightDesktop?: string;
 }>`
-  aspect-ratio: ${props => props.$aspectRatioMobile || '240 / 140'};
+  aspect-ratio: ${props => props.$aspectRatioMobile};
   border-radius: 0.5rem;
   object-fit: cover;
   object-position: center;
   min-height: ${props => props.$minHeight || '14.625rem'};
   height: auto;
+  width: 100%;
 
   @media ${({ theme }) => theme.breakpoints.tabletAndDesktop} {
-    aspect-ratio: ${props => props.$aspectRatioDesktop || '470 / 230'};
+    aspect-ratio: ${props => props.$aspectRatioDesktop};
   }
 
   @media ${({ theme }) => theme.breakpoints.tablet} {

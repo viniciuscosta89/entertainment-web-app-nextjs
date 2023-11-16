@@ -1,11 +1,20 @@
 import { DataItem } from '@type/data.types';
 import { MediaTextType } from '@type/media.types';
+import { Variants } from 'framer-motion';
 import type { ReactNode, MouseEvent } from 'react';
 
 export interface CardRootProps {
+  animate?: string;
   children: ReactNode;
   contentOver: boolean;
+  initial?: string;
   minHeight?: string;
+  variants?: Variants;
+  transition?: {
+    delay?: number;
+    type?: string;
+    stiffness?: number;
+  };
 }
 
 export interface CardBookmarkProps {

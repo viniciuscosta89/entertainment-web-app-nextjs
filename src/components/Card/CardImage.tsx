@@ -4,8 +4,8 @@ import { CardImageProps } from './Card.types';
 const POSTER_BASE_PATH = 'https://image.tmdb.org/t/p/original';
 
 function CardImage({
-  aspectRatioMobile,
-  aspectRatioDesktop,
+  aspectRatioMobile = '27 / 40',
+  aspectRatioDesktop = '27 / 40',
   isPriority,
   minHeight,
   posterUrl,
